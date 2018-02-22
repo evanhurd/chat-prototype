@@ -1,0 +1,10 @@
+import { State } from '../shared/models/state';
+import { Action } from './actions';
+export declare const setChannels: (state: State, action: Action) => State;
+export declare const addChannel: (state: State, action: Action) => State;
+export declare const removeChannel: (state: State, action: Action) => State;
+export declare const addMessage: (state: State, action: Action) => State;
+export declare const editMessage: (state: State, action: Action) => State;
+export declare const setUsers: (state: State, action: Action) => State;
+export declare const addUser: (state: State, action: Action) => State;
+export declare const removeUser: (state: State, action: Action) => State;

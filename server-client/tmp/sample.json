@@ -1,0 +1,18 @@
+{
+  "channels": [
+    {
+      "id": 123,
+      "name": "Default",
+      "users": [
+        {"id": 123, "name": "Evan", "isAdmin": true},
+        {"id": 124, "name": "Ben", "isAdmin": true}
+      ],
+      "messages": [
+        {"id": 1, "userId": 123, "text": "Hello Word"},
+        {"id": 2, "userId": 123, "text": "Hello Word"},
+        {"id": 3, "userId": 123, "text": "Hello Word", "replyTo": 1},
+        {"id": 4, "userId": 123, "text": "Hello Word"}
+      ]
+    }
+  ]
+}

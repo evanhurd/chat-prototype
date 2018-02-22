@@ -1,0 +1,15 @@
+graph LR
+    Server_CreateChannel --> Client_CreateChannel
+    Client_CreateChannel --> Redux_AddChannel
+
+    Server_JoinChannel --> Client_JoinChannel
+    Client_JoinChannel --> Redux_AddChannel
+
+    Server_SendMessage --> Client_SendMessage
+    Client_SendMessage --> Redux_AddMessage
+
+    Server_RecvMessage --> Client_RecvMessage
+    Client_RecvMessage --> Redux_AddMessage
+
+    Redux_AddChannel --> ViewState
+    Redux_AddMessage --> ViewState

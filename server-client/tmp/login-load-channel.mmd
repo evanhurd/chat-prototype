@@ -1,0 +1,30 @@
+sequenceDiagram
+  participant OAuth2
+  participant HttpApi
+  participant SocketServer
+  participant Client
+
+  Client-->>OAuth2:Login
+  OAuth2-->>Client:Returns AccessTokens
+
+  Client-->>HttpApi: Get My Profile and  Channels
+  HttpApi-->>Client: Returns Profile and Channels
+
+  Client-->>SocketServer: Follow Control Channel
+  loop Send/Recv Commands
+    Client-->>SocketServer: 
+    SocketServer-->>Client: 
+  end
+
+  Client-->Client: Determine Last Visted Channel
+
+  Client-->>HttpApi: Load Channel
+  HttpApi-->>Client: Returns Channel(Users,Messages)
+
+  Client-->>SocketServer: Follow Channel
+  SocketServer-->>Client: Returns Ack
+
+  loop Send/Recv Commands
+    Client-->>SocketServer: 
+    SocketServer-->>Client: 
+  end

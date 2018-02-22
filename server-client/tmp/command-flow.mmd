@@ -1,0 +1,16 @@
+sequenceDiagram
+  participant EventQueue
+  participant SocketServer
+  participant Client
+
+  Client-->>SocketServer: Send Message(Mention User Profile)
+  SocketServer-->>EventQueue: Push Message to Event Queue
+  SocketServer-->>SocketServer: Broadcast Message
+  SocketServer-->>Client: Returns Ack
+
+  loop Process Tasks
+    EventQueue-->>EventQueue: 
+  end
+
+  EventQueue-->>SocketServer: Updated Message
+  SocketServer-->>SocketServer: Broadcast Message

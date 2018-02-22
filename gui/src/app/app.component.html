@@ -1,0 +1,53 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" opened="true">
+
+    <mat-list *ngIf="state">
+      <mat-list-item class="channel" *ngFor="let channel of state.channels" (click)="focusChannel(channel)">
+        <mat-icon matListIcon>language</mat-icon>
+        <h3 matLine> {{channel.name}} </h3>
+      </mat-list-item>
+    </mat-list>
+    
+    <button mat-button (click)="joinChannel()">Join</button>
+    <button mat-button (click)="createChannel()">New</button>
+  </mat-drawer>
+  <mat-drawer-content fxLayout="row">
+
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row" class="channel-header">
+          <h3 *ngIf="activeChannel">{{activeChannel.name}}</h3>
+          <span fxFlex></span>
+          <button mat-button (click)="leaveChannel()">Leave</button>
+      </div>
+      <div fxFlex fxLayout="column" style="padding: 16px">
+        <div fxFlex  fxLayout="column" fxLayoutAlign="end stretch" class="channel-messages">          
+          <div *ngIf="activeChannel">
+              <div *ngFor="let message of activeChannel.messages" fxLayout="row" class="user-message">
+                <div fxFlex>
+                  <div class="name">{{message.fromUser}}<span class="when">12:20 PM</span></div>
+                  <div class="content">{{message.text}}</div>
+                </div>
+                <button mat-button (click)="editMessage(message)" class="edit-button">Edit</button>
+              </div>
+          </div>
+
+        </div>
+        <div fxLayout="row" class="message-input">
+          <input fxFlex [(ngModel)]="newMessageText" (keypress)='onKeyPress($event)'>
+          <button mat-button (click)="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="member-list">
+      <mat-list *ngIf="activeChannel">
+          <mat-list-item class="channel" *ngFor="let user of activeChannel.users">
+            <mat-icon matListIcon>person</mat-icon>
+            <h3 matLine> {{user.name}} </h3>
+          </mat-list-item>
+        </mat-list>
+    </div>
+  
+
+  </mat-drawer-content>
+</mat-drawer-container>
